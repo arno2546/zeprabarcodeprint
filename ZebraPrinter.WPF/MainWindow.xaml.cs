@@ -279,15 +279,16 @@ namespace ZebraPrinter.WPF
         {
             List<DiscoveredPrinter> printerList = GetUSBPrinters();
 
-            string zpl_string = "^XA"
-               + "^FX^FWr^CI28^CFA,40^FO100,50^A0B^FD" + lbl_one + "^FS^FO150,50^A0B^FD" + lbl_two + "^FS^FO200,50^A0B^FD" + lbl_three + "^FS^FO250,50^A0B^FD4MM^FS"
-               + "^FX fifth^FO595,320^A0B^FD" + lbl_four + "^FS"
-               + "^FXfifth formulation^FO510,30^A0B^FD" + lbl_five + "^FS"
-               + "^FXfourthsection with barcode."
-               + "^BY2,2.5,123^FO380,730^BCB,,N,N,N,A^FD" + zplbarcode + "^FS^CFA,40^FO320,730^A0B,0,0^FD" + zplbarcode + "^FS"
-               + "^FX fifth section"
-               + "^CF0,90^FO275,1145^A0B^FD" + lbl_six + "^FS"
-               + "^XZ";
+            string zpl_string = @"^XA
+                        ^FO155,20^A0,25^FDTWELVE^FS
+                        ^FO10,50^A0,15^FDFSNA-PANB-TB22-05F-126^FS 
+                        ^FO300,50^A0,15^FD6/7.^FS
+                        ^FO10,70^A0,15^FDBOYS PANJABI^FS 
+                        ^FO300,70^A0,15^FDBLUE^FS
+                        ^FO85,90^BY2^BCN,50,,,,A^FD10010159849^FS
+                        ^FO50,175^A0,20^FDBDT: 250.0000^FS
+                        ^FO300,175^A0,20^FD(+Vat)^FS
+                        ^XZ";
             if (printerList.Count > 0)
             {
                 // in this case, we arbitrarily are printing to the first found printer  
