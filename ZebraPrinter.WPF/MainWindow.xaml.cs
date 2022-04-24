@@ -17,6 +17,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zebra.Sdk.Comm;
 using Zebra.Sdk.Printer.Discovery;
+using ZebraPrinter.WPF.Models;
+using ZebraPrinter.WPF.Services;
 
 namespace ZebraPrinter.WPF
 {
@@ -247,6 +249,7 @@ namespace ZebraPrinter.WPF
         {
             InitializeComponent();
             DataContext = this;
+            List<MasterArticle> articles =  CommonService.GetAllMasterArticles()?.ToList();
         }
         private void btn_print_Click(object sender, RoutedEventArgs e)
         {

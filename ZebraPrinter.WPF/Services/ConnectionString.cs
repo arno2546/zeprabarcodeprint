@@ -9,20 +9,20 @@ namespace posdesktop.Services
 {
     public static class ConnectionString
     {
-        private static string connectionString = ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+        //private static string connectionString = ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
         private static string PosTestApiIP = ConfigurationManager.AppSettings["PosTestApiIP"];
         private static string TwelveApiIP = ConfigurationManager.AppSettings["TwelveApiIP"];
-        public static string GetPosApiTestCS
-        {
-            get
-            {
-                return connectionString;
-            }
-            set
-            {
-                connectionString = value;
-            }
-        }
+        //public static string GetPosApiTestCS
+        //{
+        //    get
+        //    {
+        //        return connectionString;
+        //    }
+        //    set
+        //    {
+        //        connectionString = value;
+        //    }
+        //}
         public static string GetTwelveApiIP { get { return TwelveApiIP; } }
         public static string GetPosTestApiIP
         {
