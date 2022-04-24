@@ -280,15 +280,24 @@ namespace ZebraPrinter.WPF
             List<DiscoveredPrinter> printerList = GetUSBPrinters();
 
             string zpl_string = @"^XA
-                        ^FO155,20^A0,25^FDTWELVE^FS
-                        ^FO10,50^A0,15^FDFSNA-PANB-TB22-05F-126^FS 
-                        ^FO300,50^A0,15^FD6/7.^FS
-                        ^FO10,70^A0,15^FDBOYS PANJABI^FS 
-                        ^FO300,70^A0,15^FDBLUE^FS
-                        ^FO85,90^BY2^BCN,50,,,,A^FD10010159849^FS
-                        ^FO50,175^A0,20^FDBDT: 250.0000^FS
-                        ^FO300,175^A0,20^FD(+Vat)^FS
-                        ^XZ";
+                    ^FO155,20^A0,25^FDTWELVE^FS
+                    ^FO10,50^A0,15^FDFSNA-PANB-TB22-05F-126^FS 
+                    ^FO300,50^A0,15^FD6/7.^FS
+                    ^FO10,70^A0,15^FDBOYS PANJABI^FS 
+                    ^FO300,70^A0,15^FDBLUE^FS
+                    ^FO85,90^BY2^BCN,50,,,,A^FD10010159849^FS
+                    ^FO50,175^A0,20^FDBDT: 250.0000^FS
+                    ^FO300,175^A0,20^FD(+Vat)^FS
+
+                    ^FO565,20^A0,25^FDTWELVE^FS
+                    ^FO420,50^A0,15^FDFSNA-PANB-TB22-05F-126^FS 
+                    ^FO710,50^A0,15^FD6/7.^FS
+                    ^FO420,70^A0,15^FDBOYS PANJABI^FS 
+                    ^FO710,70^A0,15^FDBLUE^FS
+                    ^FO495,90^BY2^BCN,50,,,,A^FD10010159849^FS
+                    ^FO460,175^A0,20^FDBDT: 250.0000^FS
+                    ^FO710,175^A0,20^FD(+Vat)^FS
+                    ^XZ";
             if (printerList.Count > 0)
             {
                 // in this case, we arbitrarily are printing to the first found printer  
