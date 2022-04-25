@@ -246,6 +246,7 @@ namespace ZebraPrinter.WPF
 
         #endregion
         List<MasterArticle> SELECTED_ARTICLES = new List<MasterArticle>();
+        bool IS_VAT_INCLUSIVE = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -328,8 +329,8 @@ namespace ZebraPrinter.WPF
                 ^FO10,70^A0,15^FD{article.GroupName}^FS 
                 ^FO300,70^A0,15^FD{article.ColorName}^FS
                 ^FO85,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
-                ^FO50,175^A0,20^FDBDT: {article.RPU}^FS
-                ^FO300,175^A0,20^FD(+Vat)^FS";
+                ^FO50,175^A0,20^FDBDT: {(IS_VAT_INCLUSIVE ? article.RPU + (article.RPU * article.VatPercent / 100) : article.RPU)}^FS
+                ^FO300,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "(+Vat)" : "")}^FS";
 
             string right = $@"^FO565,20^A0,25^FDTWELVE^FS
                 ^FO420,50^A0,15^FD{article.ProductName}^FS 
@@ -337,8 +338,8 @@ namespace ZebraPrinter.WPF
                 ^FO420,70^A0,15^FD{article.GroupName}^FS 
                 ^FO710,70^A0,15^FD{article.ColorName}^FS
                 ^FO495,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
-                ^FO460,175^A0,20^FDBDT: {article.RPU}^FS
-                ^FO710,175^A0,20^FD(+Vat)^FS
+                ^FO460,175^A0,20^FDBDT: {(IS_VAT_INCLUSIVE ? article.RPU + (article.RPU * article.VatPercent / 100) : article.RPU)}^FS
+                ^FO710,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "(+Vat)" : "")}^FS
                 ^XZ";
             return dual == true ? left + right : left + "^XZ";
         }
@@ -352,8 +353,8 @@ namespace ZebraPrinter.WPF
                 ^FO10,70^A0,15^FD{leftArticle.GroupName}^FS 
                 ^FO300,70^A0,15^FD{leftArticle.ColorName}^FS
                 ^FO85,90^BY2^BCN,50,,,,A^FD{leftArticle.Barcode}^FS
-                ^FO50,175^A0,20^FDBDT: {leftArticle.RPU}^FS
-                ^FO300,175^A0,20^FD(+Vat)^FS
+                ^FO50,175^A0,20^FDBDT:{(IS_VAT_INCLUSIVE ? leftArticle.RPU + (leftArticle.RPU * leftArticle.VatPercent / 100) : leftArticle.RPU)}^FS
+                ^FO300,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "(+Vat)" : "")}^FS
 
                 ^FO565,20^A0,25^FDTWELVE^FS
                 ^FO420,50^A0,15^FD{rightArticle.ProductName}^FS 
@@ -361,8 +362,8 @@ namespace ZebraPrinter.WPF
                 ^FO420,70^A0,15^FD{rightArticle.GroupName}^FS 
                 ^FO710,70^A0,15^FD{rightArticle.ColorName}^FS
                 ^FO495,90^BY2^BCN,50,,,,A^FD{rightArticle.Barcode}^FS
-                ^FO460,175^A0,20^FDBDT: {rightArticle.RPU}^FS
-                ^FO710,175^A0,20^FD(+Vat)^FS
+                ^FO460,175^A0,20^FDBDT:{(IS_VAT_INCLUSIVE ? rightArticle.RPU + (rightArticle.RPU * rightArticle.VatPercent / 100) : rightArticle.RPU)}^FS
+                ^FO710,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "(+Vat)" : "")}^FS
                 ^XZ";
         }
 
