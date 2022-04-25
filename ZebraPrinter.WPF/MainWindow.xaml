@@ -169,6 +169,17 @@
             Interval="1"
             Minimum="0"
             Value="{Binding Copy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+
+        <DataGrid Name="articlesGrid" AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product Name"  Binding="{Binding ProductName}"/>
+                <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" />
+                <!--The Email property contains a URI.  For example "mailto:lucy0@adventure-works.com"-->
+                <DataGridTextColumn Header="Size" Binding="{Binding SizeName}" />
+                <DataGridTextColumn Header="Color" Binding="{Binding ColorName}" />
+                <Controls:DataGridNumericUpDownColumn Minimum="1" Header="Qty" Binding="{Binding Qty}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <Button
             x:Name="btn_print"
             Grid.Row="9"

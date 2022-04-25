@@ -252,6 +252,7 @@ namespace ZebraPrinter.WPF
             InitializeComponent();
             DataContext = this;
             SELECTED_ARTICLES =  CommonService.GetAllMasterArticles()?.ToList();
+            articlesGrid.ItemsSource = SELECTED_ARTICLES;
         }
         private void btn_print_Click(object sender, RoutedEventArgs e)
         {
