@@ -279,7 +279,7 @@ namespace ZebraPrinter.WPF
         }
         public void basicPrint()
         {
-            List<DiscoveredPrinter> printerList = GetUSBPrinters();
+            //List<DiscoveredPrinter> printerList = GetUSBPrinters();
 
             //List<MasterArticle> tempArticleList = new List<MasterArticle>();
 
