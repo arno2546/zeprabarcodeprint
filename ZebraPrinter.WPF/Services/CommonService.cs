@@ -13,7 +13,7 @@ namespace ZebraPrinter.WPF.Services
         public static IEnumerable<MasterArticle> GetAllMasterArticles()
         {
             CommonHttpService<MasterArticle> _ArticleService = new CommonHttpService<MasterArticle>();
-            return _ArticleService.GetAll($"api/MasterProduct?CustomerId=2");
+            return _ArticleService.GetAll("api/MasterProductWithPaging?skip=0&take=3&CustomerId=2");
         }
     }
 }

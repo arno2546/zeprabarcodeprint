@@ -245,18 +245,16 @@ namespace ZebraPrinter.WPF
         }
 
         #endregion
+        List<MasterArticle> SELECTED_ARTICLES = new List<MasterArticle>();
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
-            List<MasterArticle> articles =  CommonService.GetAllMasterArticles()?.ToList();
+            SELECTED_ARTICLES =  CommonService.GetAllMasterArticles()?.ToList();
         }
         private void btn_print_Click(object sender, RoutedEventArgs e)
         {
-            for (int copycounter = 0; copycounter < Copy; copycounter++)
-            {
-                basicPrint(BarcodeText, txt_one, txt_two, txt_three, txt_four, txt_five, txt_six);
-            }
+            basicPrint();
         }
         public List<DiscoveredPrinter> GetUSBPrinters()
         {
@@ -278,42 +276,108 @@ namespace ZebraPrinter.WPF
             Console.WriteLine("Done discovering local printers.");
             return printerList;
         }
-        public void basicPrint(string zplbarcode, string lbl_one, string lbl_two, string lbl_three, string lbl_four, string lbl_five, string lbl_six)
+        public void basicPrint()
         {
             List<DiscoveredPrinter> printerList = GetUSBPrinters();
 
-            string zpl_string = @"^XA
-                    ^FO155,20^A0,25^FDTWELVE^FS
-                    ^FO10,50^A0,15^FDFSNA-PANB-TB22-05F-126^FS 
-                    ^FO300,50^A0,15^FD6/7.^FS
-                    ^FO10,70^A0,15^FDBOYS PANJABI^FS 
-                    ^FO300,70^A0,15^FDBLUE^FS
-                    ^FO85,90^BY2^BCN,50,,,,A^FD10010159849^FS
-                    ^FO50,175^A0,20^FDBDT: 250.0000^FS
-                    ^FO300,175^A0,20^FD(+Vat)^FS
+            //List<MasterArticle> tempArticleList = new List<MasterArticle>();
 
-                    ^FO565,20^A0,25^FDTWELVE^FS
-                    ^FO420,50^A0,15^FDFSNA-PANB-TB22-05F-126^FS 
-                    ^FO710,50^A0,15^FD6/7.^FS
-                    ^FO420,70^A0,15^FDBOYS PANJABI^FS 
-                    ^FO710,70^A0,15^FDBLUE^FS
-                    ^FO495,90^BY2^BCN,50,,,,A^FD10010159849^FS
-                    ^FO460,175^A0,20^FDBDT: 250.0000^FS
-                    ^FO710,175^A0,20^FD(+Vat)^FS
-                    ^XZ";
+            //foreach(MasterArticle article in SELECTED_ARTICLES)
+            //{
+            //    for(int i = 1; i <= article.Qty; i++)
+            //    {
+            //        tempArticleList.Add(article);
+            //    }
+            //}
+
+            for (int i = 0; i < SELECTED_ARTICLES.Count; i++)
+            {
+                for (int j = 1; j <= SELECTED_ARTICLES[i].Qty; j++)
+                {
+                    if (SELECTED_ARTICLES[i].Qty > 1)
+                    {
+                        //Console.WriteLine(SELECTED_ARTICLES[i].ProductName + " x2");
+                        printZpl(GetFormattedZPLString(SELECTED_ARTICLES[i]));
+                        SELECTED_ARTICLES[i].Qty -= 2;
+                    }
+                    else if (SELECTED_ARTICLES[i].Qty == 1)
+                    {                     
+                        //Console.WriteLine(SELECTED_ARTICLES[i].ProductName + " x1");
+                        SELECTED_ARTICLES[i].Qty -= 1;
+                        if (SELECTED_ARTICLES.ElementAtOrDefault(i + 1) != null)
+                        {
+                            printZpl(GetFormattedZPLString(SELECTED_ARTICLES[i], SELECTED_ARTICLES[i+1]));
+                            SELECTED_ARTICLES[i + 1].Qty -= 1;
+                            //Console.WriteLine(SELECTED_ARTICLES[i+1].ProductName + " x1");
+                        }
+                        else
+                        {
+                            printZpl(GetFormattedZPLString(SELECTED_ARTICLES[i], false));
+                        }
+                    }
+                }
+            }           
+        }
+
+        public string GetFormattedZPLString(MasterArticle article, bool dual = true)
+        {
+            string left = $@"^XA
+                ^FO155,20^A0,25^FDTWELVE^FS
+                ^FO10,50^A0,15^FD{article.ProductName}^FS 
+                ^FO300,50^A0,15^FD{article.SizeName}^FS
+                ^FO10,70^A0,15^FD{article.GroupName}^FS 
+                ^FO300,70^A0,15^FD{article.ColorName}^FS
+                ^FO85,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
+                ^FO50,175^A0,20^FDBDT: {article.RPU}^FS
+                ^FO300,175^A0,20^FD(+Vat)^FS";
+
+            string right = $@"^FO565,20^A0,25^FDTWELVE^FS
+                ^FO420,50^A0,15^FD{article.ProductName}^FS 
+                ^FO710,50^A0,15^FD{article.SizeName}^FS
+                ^FO420,70^A0,15^FD{article.GroupName}^FS 
+                ^FO710,70^A0,15^FD{article.ColorName}^FS
+                ^FO495,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
+                ^FO460,175^A0,20^FDBDT: {article.RPU}^FS
+                ^FO710,175^A0,20^FD(+Vat)^FS
+                ^XZ";
+            return dual == true ? left + right : left + "^XZ";
+        }
+        
+        public string GetFormattedZPLString(MasterArticle leftArticle, MasterArticle rightArticle)
+        {
+            return $@"^XA
+                ^FO155,20^A0,25^FDTWELVE^FS
+                ^FO10,50^A0,15^FD{leftArticle.ProductName}^FS 
+                ^FO300,50^A0,15^FD{leftArticle.SizeName}^FS
+                ^FO10,70^A0,15^FD{leftArticle.GroupName}^FS 
+                ^FO300,70^A0,15^FD{leftArticle.ColorName}^FS
+                ^FO85,90^BY2^BCN,50,,,,A^FD{leftArticle.Barcode}^FS
+                ^FO50,175^A0,20^FDBDT: {leftArticle.RPU}^FS
+                ^FO300,175^A0,20^FD(+Vat)^FS
+
+                ^FO565,20^A0,25^FDTWELVE^FS
+                ^FO420,50^A0,15^FD{rightArticle.ProductName}^FS 
+                ^FO710,50^A0,15^FD{rightArticle.SizeName}^FS
+                ^FO420,70^A0,15^FD{rightArticle.GroupName}^FS 
+                ^FO710,70^A0,15^FD{rightArticle.ColorName}^FS
+                ^FO495,90^BY2^BCN,50,,,,A^FD{rightArticle.Barcode}^FS
+                ^FO460,175^A0,20^FDBDT: {rightArticle.RPU}^FS
+                ^FO710,175^A0,20^FD(+Vat)^FS
+                ^XZ";
+        }
+
+        public void printZpl(string zplString)
+        {
+            List<DiscoveredPrinter> printerList = GetUSBPrinters();
             if (printerList.Count > 0)
             {
                 // in this case, we arbitrarily are printing to the first found printer  
                 DiscoveredPrinter discoveredPrinter = printerList[0];
                 Connection connection = discoveredPrinter.GetConnection();
                 connection.Open();
-                connection.Write(Encoding.UTF8.GetBytes(zpl_string));
+                connection.Write(Encoding.UTF8.GetBytes(zplString));
             }
             else Console.WriteLine("No Printers found to print to.");
-
-
         }
-
-
     }
 }

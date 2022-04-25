@@ -38,11 +38,11 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image
+            <!--<Image
                 Width="100"
                 Height="100"
                 Source="Resources/favicon.png"
-                Stretch="Uniform" />
+                Stretch="Uniform" />-->
             <StackPanel
                 Grid.Column="1"
                 Margin="24,0,0,0"
@@ -51,13 +51,13 @@
                     Style="{StaticResource MaterialDesignDisplay1TextBlock}"
                     TextOptions.TextHintingMode="Animated"
                     TextWrapping="Wrap">
-                    WELCOME ABOARD CAPTAIN
+                    BARCODE PRINT
                 </TextBlock>
 
             </StackPanel>
         </Grid>
 
-        <TextBox
+        <!--<TextBox
             x:Name="txt_barcode"
             Grid.Row="1"
             Width="205"
@@ -168,7 +168,7 @@
             materialDesign:HintAssist.Hint="Copy"
             Interval="1"
             Minimum="0"
-            Value="{Binding Copy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            Value="{Binding Copy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
         <Button
             x:Name="btn_print"
             Grid.Row="9"
