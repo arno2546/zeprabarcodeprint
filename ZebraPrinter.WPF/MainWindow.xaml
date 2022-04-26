@@ -217,7 +217,7 @@
                 <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" />
                 <DataGridTextColumn Header="Size" Binding="{Binding SizeName}" />
                 <DataGridTextColumn Header="Color" Binding="{Binding ColorName}" />
-                <Controls:DataGridNumericUpDownColumn Minimum="1" Header="Qty" Binding="{Binding Qty}" />
+                <Controls:DataGridNumericUpDownColumn Minimum="0" Header="Qty" Binding="{Binding Qty}" />
             </DataGrid.Columns>
         </DataGrid>
 
