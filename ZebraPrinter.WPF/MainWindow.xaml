@@ -8,7 +8,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
-    Title="FIGURENFACTS ZPL BARCODE PRINTER / ZEBRA OVER USB"
+    Title="TWELVE BARCODE PRINTER"
     Width="800"
     mc:Ignorable="d">
     <Window.Background>
@@ -170,11 +170,30 @@
             Minimum="0"
             Value="{Binding Copy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
 
-        <DataGrid Name="articlesGrid" AutoGenerateColumns="False" >
+        <StackPanel  Grid.Row="1" Orientation="Horizontal">
+            <TextBox
+            x:Name="txt_barcode"           
+            Width="205"
+            Height="37"          
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Margin="0 0 0 10"
+            materialDesign:ColorZoneAssist.Mode="Light"
+            materialDesign:HintAssist.Hint="Barcode"
+            materialDesign:HintAssist.HintOpacity="1"
+            materialDesign:HintAssist.IsFloating="True"
+            Text="{Binding BarcodeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            TextWrapping="Wrap" />
+            <Button Height="27" >
+                <materialDesign:PackIcon Kind="Search" />
+            </Button>
+        </StackPanel>
+
+
+        <DataGrid Name="articlesGrid" AutoGenerateColumns="False" Grid.Row="3">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Product Name"  Binding="{Binding ProductName}"/>
                 <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" />
-                <!--The Email property contains a URI.  For example "mailto:lucy0@adventure-works.com"-->
                 <DataGridTextColumn Header="Size" Binding="{Binding SizeName}" />
                 <DataGridTextColumn Header="Color" Binding="{Binding ColorName}" />
                 <Controls:DataGridNumericUpDownColumn Minimum="1" Header="Qty" Binding="{Binding Qty}" />
