@@ -88,6 +88,7 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.dll</HintPath>
@@ -153,6 +154,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\MasterArticle.cs" />
+    <Compile Include="Models\MasterArticle.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterArticle.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Services\CommonHttpService.cs" />
     <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\ConnectionString.cs" />
@@ -187,6 +193,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Models\MasterArticle.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>MasterArticle.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\MasterArticle.dbml.layout">
+      <DependentUpon>MasterArticle.dbml</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -204,6 +218,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="figuresnfacts.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

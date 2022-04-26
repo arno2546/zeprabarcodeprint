@@ -246,13 +246,17 @@ namespace ZebraPrinter.WPF
 
         #endregion
         List<MasterArticle> SELECTED_ARTICLES = new List<MasterArticle>();
+        List<Vw_MasterArticle> ALL_ARTICLES = new List<Vw_MasterArticle>();
         bool IS_VAT_INCLUSIVE = false;
+        MasterArticleDataContext MasterArticleDataContext =
+            new MasterArticleDataContext(Properties.Settings.Default.TwelveInventoryConnectionString);
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
             SELECTED_ARTICLES =  CommonService.GetAllMasterArticles()?.ToList();
-            articlesGrid.ItemsSource = SELECTED_ARTICLES;
+            ALL_ARTICLES = MasterArticleDataContext.Vw_MasterArticles.ToList(); 
+            articlesGrid.ItemsSource = ALL_ARTICLES; 
         }
         private void btn_print_Click(object sender, RoutedEventArgs e)
         {

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TwelveInventory" Class="MasterArticleDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.11.180;Initial Catalog=TwelveInventory;Persist Security Info=True;User ID=team" SettingsObjectName="ZebraPrinter.WPF.Properties.Settings" SettingsPropertyName="TwelveInventoryConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Vw_MasterArticle" Member="Vw_MasterArticles">
+    <Type Name="Vw_MasterArticle">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GenericName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CategorieCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BrandName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModelName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModelCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ProductTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnitName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ProductCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GroupName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GroupCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ProductDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PackSize" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Dimension" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="WarrantyTerms" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AverageCost" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ColorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ColorName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SizeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Sku" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Barcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CPU" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="RPU" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="BuId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BrandID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GenericID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModelID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UOMId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProdDetailsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserBsnMappingId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsQc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="QcFormId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubCategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubCategoryName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ServerPkId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VatPercent" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

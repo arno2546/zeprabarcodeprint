@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 10.25" name="MasterArticle">
+  <DataContextMoniker Name="/MasterArticleDataContext" />
+  <nestedChildShapes>
+    <classShape Id="e8869c17-dc44-4cbd-97e0-50725cfa1bf7" absoluteBounds="3.25, 0.5, 2, 9.4629541015625">
+      <DataClassMoniker Name="/MasterArticleDataContext/Vw_MasterArticle" />
+      <nestedChildShapes>
+        <elementListCompartment Id="81631758-99b1-46be-825f-3837fff810c5" absoluteBounds="3.2649999999999997, 0.96, 1.9700000000000002, 8.9029541015625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
