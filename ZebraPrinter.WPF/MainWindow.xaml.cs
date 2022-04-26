@@ -256,7 +256,8 @@ namespace ZebraPrinter.WPF
             DataContext = this;
             SELECTED_ARTICLES =  CommonService.GetAllMasterArticles()?.ToList();
             ALL_ARTICLES = MasterArticleDataContext.Vw_MasterArticles.ToList(); 
-            articlesGrid.ItemsSource = ALL_ARTICLES; 
+            articlesGrid.ItemsSource = SELECTED_ARTICLES;
+            //CustomerCmboBx.ItemsSource = ALL_ARTICLES;
         }
         private void btn_print_Click(object sender, RoutedEventArgs e)
         {
@@ -393,6 +394,17 @@ namespace ZebraPrinter.WPF
                 return article.RPU + (article.RPU * article.VatPercent / 100);
             }
             return article.RPU;
+        }
+
+        private void articleSearchBx_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter && articleSearchBx.CurrentText.Length > 0)
+            {
+                ProductGrid.ItemsSource = ALL_ARTICLES
+                    .Where(article => (article.Barcode != null && article.Barcode.Contains(articleSearchBx.CurrentText)) 
+                    || (article.ProductName != null && article.ProductName.Contains(articleSearchBx.CurrentText)))?.ToList() ?? new List<Vw_MasterArticle>();
+                prodGridPopUp.IsOpen = true;
+            }
         }
     }
 }

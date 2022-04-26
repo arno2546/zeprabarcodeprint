@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:ZebraPrinter.WPF"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     Title="TWELVE BARCODE PRINTER"
     Width="800"
@@ -171,7 +172,7 @@
             Value="{Binding Copy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
 
         <StackPanel  Grid.Row="1" Orientation="Horizontal">
-            <TextBox
+            <!--<TextBox
             x:Name="txt_barcode"           
             Width="205"
             Height="37"          
@@ -186,7 +187,27 @@
             TextWrapping="Wrap" />
             <Button Height="27" >
                 <materialDesign:PackIcon Kind="Search" />
-            </Button>
+            </Button>-->
+            
+            <!--<telerik:RadAutoCompleteBox
+                             x:Name="CustomerCmboBx"
+                             WatermarkContent ="Search Customer"
+                             FontFamily="/Fonts/#Montserrat-Light"
+                             FontSize="16"
+                             VerticalAlignment="Center"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             HorizontalAlignment="Stretch"
+                             DisplayMemberPath="ProductName"                    
+                             TextSearch.TextPath ="ProductName"
+                             SelectionMode="Single" 
+                              />-->
+
+            <telerik:RadWatermarkTextBox 
+                x:Name="articleSearchBx"
+                WatermarkContent="Enter product barcode or name" KeyUp="articleSearchBx_KeyUp"
+                >                
+            </telerik:RadWatermarkTextBox>
         </StackPanel>
 
 
@@ -223,5 +244,35 @@
 
             </StackPanel>
         </Button>
+
+        <Popup Placement="Center"
+                    Name="prodGridPopUp" HorizontalAlignment="Center" Width="900" 
+                    IsOpen="False" VerticalAlignment="Center" Height="500"
+                    StaysOpen="False"
+               AllowsTransparency="True">
+
+            <telerik:RadGridView x:Name="ProductGrid"                           
+                                AutoGenerateColumns="False"                              
+                                Grid.Row="2"
+                                FilteringMode="FilterRow"
+                                IsFilteringAllowed="False"
+                                IsReadOnly="True"
+                                ShowSearchPanel="True"
+                                SearchPanelCloseButtonVisibility ="Collapsed" 
+                                >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn 
+                                ShowFieldFilters="True"  Width="*" 
+                                DataMemberBinding="{Binding ProductName}"
+                                Header="Product Name"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Popup>
+        
     </Grid>
+
+    
+
 </Controls:MetroWindow>
+
+    
