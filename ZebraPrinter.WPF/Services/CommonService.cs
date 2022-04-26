@@ -25,6 +25,7 @@ namespace ZebraPrinter.WPF.Services
             _MasterArticle.SizeName = articleToConvert.SizeName;
             _MasterArticle.Qty = 0;
             _MasterArticle.RPU = articleToConvert.RPU;
+            _MasterArticle.VatPercent = articleToConvert.VatPercent?? 0;
             return _MasterArticle;
         }
 

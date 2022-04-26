@@ -435,7 +435,11 @@ namespace ZebraPrinter.WPF
                 SELECTED_ARTICLES.Add(articleToAdd);
             }
             articlesGrid.Items.Refresh();
-        }
+        }      
 
+        private void vatInclusiveCheck_Click(object sender, RoutedEventArgs e)
+        {
+            IS_VAT_INCLUSIVE = vatInclusiveCheck?.IsChecked ?? false;
+        }
     }
 }

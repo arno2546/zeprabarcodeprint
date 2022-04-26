@@ -49,14 +49,16 @@
             <StackPanel
                 Grid.Column="1"
                 Margin="24,0,0,0"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Barcode" Width="60" Height="50"/>
                 <TextBlock
                     Style="{StaticResource MaterialDesignDisplay1TextBlock}"
                     TextOptions.TextHintingMode="Animated"
-                    TextWrapping="Wrap">
-                    BARCODE PRINT
-                </TextBlock>
-
+                    TextWrapping="Wrap"
+                    FontWeight="Bold">
+                     BARCODE PRINT
+                </TextBlock>                
             </StackPanel>
         </Grid>
 
@@ -210,17 +212,38 @@
                 WatermarkContent="Enter product barcode or name" 
                 KeyUp="articleSearchBx_KeyUp"
                 Margin="10 0 0 10"
-                >                
+                Height="25"
+                FontSize="15"
+                >
+                <telerik:StyleManager.Theme>
+                    <telerik:Windows8Theme/>
+                </telerik:StyleManager.Theme>
             </telerik:RadWatermarkTextBox>
+            <CheckBox 
+                x:Name="vatInclusiveCheck"
+                IsChecked="False"
+                Margin="15 0 0 10" 
+                Click="vatInclusiveCheck_Click"
+                FontSize="15"
+                FontWeight="SemiBold"
+                >  
+                Vat Inclusive
+            </CheckBox>
+        
         </StackPanel>
 
 
-        <DataGrid Name="articlesGrid" AutoGenerateColumns="False" Grid.Row="3">
+        <DataGrid 
+            Name="articlesGrid"
+            AutoGenerateColumns="False" 
+            Grid.Row="3"
+            CanUserAddRows="False"
+            Margin="10 0 10 0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Product Name"  Binding="{Binding ProductName}"/>
-                <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" />
-                <DataGridTextColumn Header="Size" Binding="{Binding SizeName}" />
-                <DataGridTextColumn Header="Color" Binding="{Binding ColorName}" />
+                <DataGridTextColumn Width="400" Header="Product Name"  Binding="{Binding ProductName}"/>
+                <DataGridTextColumn Width="200" Header="Barcode" Binding="{Binding Barcode}" />
+                <DataGridTextColumn Width="200" Header="Size" Binding="{Binding SizeName}" />
+                <DataGridTextColumn Width="200" Header="Color" Binding="{Binding ColorName}" />
                 <Controls:DataGridNumericUpDownColumn Minimum="0" Header="Qty" Binding="{Binding Qty}" />
             </DataGrid.Columns>
         </DataGrid>
@@ -252,40 +275,46 @@
         </Button>
 
         <Popup Placement="Center"
-                    Name="prodGridPopUp" HorizontalAlignment="Center" Width="900" 
-                    IsOpen="False" VerticalAlignment="Center" Height="500"
-                    StaysOpen="False"
+                    Name="prodGridPopUp" HorizontalAlignment="Center" Width="1000" 
+                    IsOpen="False" VerticalAlignment="Center" Height="600"
+                    StaysOpen="False" 
                AllowsTransparency="True">
 
-            <telerik:RadGridView x:Name="ProductGrid"                           
+            
+            <Border Margin="0,0,8,8" Background="White" BorderThickness="1">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="8" Opacity="0.4"/>
+                </Border.Effect>
+                <telerik:RadGridView x:Name="ProductGrid"                           
                                 AutoGenerateColumns="False"                              
                                 Grid.Row="2"
                                 FilteringMode="FilterRow"
                                 IsFilteringAllowed="False"
                                 IsReadOnly="True"
                                 ShowSearchPanel="True"
-                                SearchPanelCloseButtonVisibility ="Collapsed" MouseDoubleClick="ProductGrid_MouseDoubleClick" 
+                                SearchPanelCloseButtonVisibility ="Collapsed" 
+                                MouseDoubleClick="ProductGrid_MouseDoubleClick" 
                                 >
-                <telerik:RadGridView.Columns>
-                    <telerik:GridViewDataColumn 
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn 
                                 ShowFieldFilters="True"  Width="*" 
                                 DataMemberBinding="{Binding ProductName}"
                                 Header="Product Name"/>
-                    <telerik:GridViewDataColumn 
+                        <telerik:GridViewDataColumn 
                                              ShowFieldFilters="True" 
                                              DataMemberBinding="{Binding Barcode}"
                                              Width="*" Header="Barcode"/>
 
-                    <telerik:GridViewDataColumn 
+                        <telerik:GridViewDataColumn 
                                              ShowFieldFilters="False" 
                                              DataMemberBinding="{Binding ColorName}" 
                                              Width="*" Header="ColorName"/>
 
-                    <telerik:GridViewDataColumn 
+                        <telerik:GridViewDataColumn 
                                              DataMemberBinding="{Binding SizeName}" 
                                              Width="*" Header="SizeName"/>
 
-                    <!--<telerik:GridViewDataColumn 
+                        <!--<telerik:GridViewDataColumn 
                                              DataMemberBinding="{Binding RPU, Mode=TwoWay}" 
                                              Width="*" Header="RPU">
                         <telerik:GridViewDataColumn.CellTemplate>
@@ -301,8 +330,13 @@
                         </telerik:GridViewDataColumn.CellEditTemplate>
                     </telerik:GridViewDataColumn>-->
 
-                </telerik:RadGridView.Columns>
-            </telerik:RadGridView>
+                    </telerik:RadGridView.Columns>
+                    <telerik:StyleManager.Theme>
+                        <telerik:Windows8Theme/>
+                    </telerik:StyleManager.Theme>
+
+                </telerik:RadGridView>
+            </Border>
         </Popup>
         
     </Grid>
