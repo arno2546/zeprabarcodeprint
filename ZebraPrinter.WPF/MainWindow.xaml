@@ -211,7 +211,7 @@
         </StackPanel>
 
 
-        <DataGrid Name="articlesGrid" AutoGenerateColumns="False" Grid.Row="3">
+        <DataGrid Name="articlesGrid" Height="200" AutoGenerateColumns="False" Grid.Row="3">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Product Name"  Binding="{Binding ProductName}"/>
                 <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" />
@@ -220,6 +220,8 @@
                 <Controls:DataGridNumericUpDownColumn Minimum="1" Header="Qty" Binding="{Binding Qty}" />
             </DataGrid.Columns>
         </DataGrid>
+
+       
         <Button
             x:Name="btn_print"
             Grid.Row="9"
@@ -258,13 +260,43 @@
                                 IsFilteringAllowed="False"
                                 IsReadOnly="True"
                                 ShowSearchPanel="True"
-                                SearchPanelCloseButtonVisibility ="Collapsed" 
+                                SearchPanelCloseButtonVisibility ="Collapsed" MouseDoubleClick="ProductGrid_MouseDoubleClick" 
                                 >
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn 
                                 ShowFieldFilters="True"  Width="*" 
                                 DataMemberBinding="{Binding ProductName}"
                                 Header="Product Name"/>
+                    <telerik:GridViewDataColumn 
+                                             ShowFieldFilters="True" 
+                                             DataMemberBinding="{Binding Barcode}"
+                                             Width="*" Header="Barcode"/>
+
+                    <telerik:GridViewDataColumn 
+                                             ShowFieldFilters="False" 
+                                             DataMemberBinding="{Binding ColorName}" 
+                                             Width="*" Header="ColorName"/>
+
+                    <telerik:GridViewDataColumn 
+                                             DataMemberBinding="{Binding SizeName}" 
+                                             Width="*" Header="SizeName"/>
+
+                    <!--<telerik:GridViewDataColumn 
+                                             DataMemberBinding="{Binding RPU, Mode=TwoWay}" 
+                                             Width="*" Header="RPU">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadNumericUpDown Value="{Binding Value}"/>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+
+                        <telerik:GridViewDataColumn.CellEditTemplate>
+                            <DataTemplate>
+                                <telerik:RadNumericUpDown Value="{Binding Value}"/>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellEditTemplate>
+                    </telerik:GridViewDataColumn>-->
+
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
         </Popup>

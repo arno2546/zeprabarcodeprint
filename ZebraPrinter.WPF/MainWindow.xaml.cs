@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -254,9 +255,9 @@ namespace ZebraPrinter.WPF
         {
             InitializeComponent();
             DataContext = this;
-            SELECTED_ARTICLES =  CommonService.GetAllMasterArticles()?.ToList();
-            ALL_ARTICLES = MasterArticleDataContext.Vw_MasterArticles.ToList(); 
             articlesGrid.ItemsSource = SELECTED_ARTICLES;
+            //SELECTED_ARTICLES =  CommonService.GetAllMasterArticles()?.ToList();
+            ALL_ARTICLES = MasterArticleDataContext.ExecuteQuery<Vw_MasterArticle>("SELECT * FROM Vw_MasterArticle").ToList();
             //CustomerCmboBx.ItemsSource = ALL_ARTICLES;
         }
         private void btn_print_Click(object sender, RoutedEventArgs e)
@@ -400,11 +401,34 @@ namespace ZebraPrinter.WPF
         {
             if(e.Key == Key.Enter && articleSearchBx.CurrentText.Length > 0)
             {
-                ProductGrid.ItemsSource = ALL_ARTICLES
-                    .Where(article => (article.Barcode != null && article.Barcode.Contains(articleSearchBx.CurrentText)) 
-                    || (article.ProductName != null && article.ProductName.Contains(articleSearchBx.CurrentText)))?.ToList() ?? new List<Vw_MasterArticle>();
+                //ProductGrid.ItemsSource = ALL_ARTICLES
+                //    .Where(article => (article.Barcode != null && article.Barcode.Contains(articleSearchBx.CurrentText)) 
+                //    || (article.ProductName != null && article.ProductName.Contains(articleSearchBx.CurrentText)))?.ToList() ?? new List<Vw_MasterArticle>();
+
+                ProductGrid.ItemsSource = MasterArticleDataContext.ExecuteQuery<Vw_MasterArticle>($"SELECT TOP 100 * FROM Vw_MasterArticle WHERE ProductName like '%{articleSearchBx.CurrentText}%' or Barcode like '%{articleSearchBx.CurrentText}%'").ToList();
                 prodGridPopUp.IsOpen = true;
             }
         }
+
+        private void ProductGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Vw_MasterArticle selectedArticle = ProductGrid.SelectedItem as Vw_MasterArticle;
+            addToSelectedArticles(CommonService.ConvertToMasterArticle(selectedArticle));
+        }
+
+        private void addToSelectedArticles(MasterArticle articleToAdd)
+        {
+            MasterArticle existingArticle = SELECTED_ARTICLES.Where(article => article.Barcode == articleToAdd.Barcode).FirstOrDefault();
+            if (existingArticle != null)
+            {
+                existingArticle.Qty += 1;
+            }
+            else
+            {
+                SELECTED_ARTICLES.Add(articleToAdd);
+            }
+            articlesGrid.Items.Refresh();
+        }
+
     }
 }
