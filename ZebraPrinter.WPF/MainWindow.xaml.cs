@@ -413,7 +413,13 @@ namespace ZebraPrinter.WPF
         private void ProductGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Vw_MasterArticle selectedArticle = ProductGrid.SelectedItem as Vw_MasterArticle;
-            addToSelectedArticles(CommonService.ConvertToMasterArticle(selectedArticle));
+            List<Vw_MasterArticle> articlesToAdd = MasterArticleDataContext
+                .ExecuteQuery<Vw_MasterArticle>($"SELECT * FROM Vw_MasterArticle WHERE ProductName = '{selectedArticle.ProductName}'")
+                .ToList();
+            foreach (Vw_MasterArticle article in articlesToAdd)
+            {
+                addToSelectedArticles(CommonService.ConvertToMasterArticle(article));
+            }
         }
 
         private void addToSelectedArticles(MasterArticle articleToAdd)
