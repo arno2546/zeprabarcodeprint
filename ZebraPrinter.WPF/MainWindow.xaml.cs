@@ -324,7 +324,8 @@ namespace ZebraPrinter.WPF
                         }
                     }
                 }
-            }           
+            }
+            SELECTED_ARTICLES.Clear();
         }
 
         public string GetFormattedZPLString(MasterArticle article, bool dual = true)
