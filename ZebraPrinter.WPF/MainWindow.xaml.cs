@@ -247,7 +247,7 @@ namespace ZebraPrinter.WPF
 
         #endregion
         List<MasterArticle> SELECTED_ARTICLES = new List<MasterArticle>();
-        List<Vw_MasterArticle> ALL_ARTICLES = new List<Vw_MasterArticle>();
+        //List<Vw_MasterArticle> ALL_ARTICLES = new List<Vw_MasterArticle>();
         bool IS_VAT_INCLUSIVE = false;
         MasterArticleDataContext MasterArticleDataContext =
             new MasterArticleDataContext(Properties.Settings.Default.TwelveInventoryConnectionString);
@@ -257,7 +257,7 @@ namespace ZebraPrinter.WPF
             DataContext = this;
             articlesGrid.ItemsSource = SELECTED_ARTICLES;
             //SELECTED_ARTICLES =  CommonService.GetAllMasterArticles()?.ToList();
-            ALL_ARTICLES = MasterArticleDataContext.ExecuteQuery<Vw_MasterArticle>("SELECT * FROM Vw_MasterArticle").ToList();
+            //ALL_ARTICLES = MasterArticleDataContext.ExecuteQuery<Vw_MasterArticle>("SELECT * FROM Vw_MasterArticle").ToList();
             //CustomerCmboBx.ItemsSource = ALL_ARTICLES;
         }
         private void btn_print_Click(object sender, RoutedEventArgs e)
