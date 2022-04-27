@@ -22,6 +22,7 @@ namespace ZebraPrinter.WPF.Services
             _MasterArticle.Barcode = articleToConvert.Barcode;
             _MasterArticle.ProductName = articleToConvert.ProductName;
             _MasterArticle.ColorName = articleToConvert.ColorName;
+            _MasterArticle.GroupName = articleToConvert.GroupName;
             _MasterArticle.SizeName = articleToConvert.SizeName;
             _MasterArticle.Qty = 0;
             _MasterArticle.RPU = articleToConvert.RPU;
