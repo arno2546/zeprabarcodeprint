@@ -325,7 +325,7 @@ namespace ZebraPrinter.WPF
                     }
                 }
             }
-            SELECTED_ARTICLES.Clear();
+            clearSelection();
         }
 
         public string GetFormattedZPLString(MasterArticle article, bool dual = true)
@@ -440,6 +440,17 @@ namespace ZebraPrinter.WPF
         private void vatInclusiveCheck_Click(object sender, RoutedEventArgs e)
         {
             IS_VAT_INCLUSIVE = vatInclusiveCheck?.IsChecked ?? false;
+        }
+
+        private void clearButton_Click(object sender, RoutedEventArgs e)
+        {
+            clearSelection();
+        }
+
+        private void clearSelection()
+        {
+            SELECTED_ARTICLES.Clear();
+            articlesGrid.Items.Refresh();
         }
     }
 }

@@ -175,7 +175,9 @@
             Minimum="0"
             Value="{Binding Copy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
 
-        <StackPanel  Grid.Row="1" Orientation="Horizontal">
+        <StackPanel 
+            Grid.Row="1" 
+            Orientation="Horizontal" >
             <!--<TextBox
             x:Name="txt_barcode"           
             Width="205"
@@ -229,7 +231,19 @@
                 >  
                 Vat Inclusive
             </CheckBox>
-        
+            
+            <Button
+                x:Name="clearButton"                
+                Click="clearButton_Click"                
+                Margin="20 0 0 10"
+                >
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Close" Height="20" Width="20"/>
+                    <TextBlock Margin="10 0 0 0" 
+                            Text="Clear Selection"
+                            VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
 
 
