@@ -1,5 +1,5 @@
-# zepra barcode print with WPF 
-ZPL BARCODE PRINTER / ZEBRA OVER USB
+<!-- zepra barcode print with WPF  -->
+<!-- ZPL BARCODE PRINTER / ZEBRA OVER USB
 
 
 
@@ -30,3 +30,4 @@ Install-Package Zebra.Printer.SDK -Version 2.15.2634
 
 [PlDb]: <https://support.zebra.com/cpws/docs/zpl/zpl_manual.pdf>
 [PlGh]: <http://labelary.com/viewer.html>
+ -->
