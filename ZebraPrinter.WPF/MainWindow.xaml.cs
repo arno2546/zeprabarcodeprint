@@ -338,7 +338,7 @@ namespace ZebraPrinter.WPF
                 ^FO300,70^A0,15^FD{article.ColorName}^FS
                 ^FO85,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
                 ^FO50,175^A0,20^FDBDT: {getArticleRPU(article)}^FS
-                ^FO300,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "(+Vat)" : "")}^FS";
+                ^FO300,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS";
 
             string right = $@"^FO565,20^A0,25^FDTWELVE^FS
                 ^FO420,50^A0,15^FD{article.ProductName}^FS 
@@ -347,7 +347,7 @@ namespace ZebraPrinter.WPF
                 ^FO710,70^A0,15^FD{article.ColorName}^FS
                 ^FO495,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
                 ^FO460,175^A0,20^FDBDT: {getArticleRPU(article)}^FS
-                ^FO710,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "(+Vat)" : "")}^FS
+                ^FO710,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
                 ^XZ";
             return dual == true ? left + right : left + "^XZ";
         }
@@ -362,7 +362,7 @@ namespace ZebraPrinter.WPF
                 ^FO300,70^A0,15^FD{leftArticle.ColorName}^FS
                 ^FO85,90^BY2^BCN,50,,,,A^FD{leftArticle.Barcode}^FS
                 ^FO50,175^A0,20^FDBDT:{getArticleRPU(leftArticle)}^FS
-                ^FO300,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "(+Vat)" : "")}^FS
+                ^FO300,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
 
                 ^FO565,20^A0,25^FDTWELVE^FS
                 ^FO420,50^A0,15^FD{rightArticle.ProductName}^FS 
@@ -371,7 +371,7 @@ namespace ZebraPrinter.WPF
                 ^FO710,70^A0,15^FD{rightArticle.ColorName}^FS
                 ^FO495,90^BY2^BCN,50,,,,A^FD{rightArticle.Barcode}^FS
                 ^FO460,175^A0,20^FDBDT:{getArticleRPU(rightArticle)}^FS
-                ^FO710,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "(+Vat)" : "")}^FS
+                ^FO710,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
                 ^XZ";
         }
 
