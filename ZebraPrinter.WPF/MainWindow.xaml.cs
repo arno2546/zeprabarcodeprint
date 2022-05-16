@@ -333,7 +333,7 @@ namespace ZebraPrinter.WPF
             string left = $@"^XA
                 ^FO155,20^A0,25^FDTWELVE^FS
                 ^FO10,50^A0,20^FD{article.ProductName}^FS 
-                ^FO280,50^A0,18^FD{article.SizeName}^FS
+                ^FO300,50^A0,18^FD{article.SizeName}^FS
                 ^FO10,70^A0,18^FD{article.GroupName}^FS 
                 ^FO280,70^A0,18^FD{article.ColorName}^FS
                 ^FO85,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
@@ -342,7 +342,7 @@ namespace ZebraPrinter.WPF
 
             string right = $@"^FO565,20^A0,25^FDTWELVE^FS
                 ^FO420,50^A0,20^FD{article.ProductName}^FS 
-                ^FO695,50^A0,18^FD{article.SizeName}^FS
+                ^FO710,50^A0,18^FD{article.SizeName}^FS
                 ^FO420,70^A0,18^FD{article.GroupName}^FS 
                 ^FO695,70^A0,18^FD{article.ColorName}^FS
                 ^FO495,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
@@ -357,7 +357,7 @@ namespace ZebraPrinter.WPF
             return $@"^XA
                 ^FO155,20^A0,25^FDTWELVE^FS
                 ^FO10,50^A0,20^FD{leftArticle.ProductName}^FS 
-                ^FO280,50^A0,18^FD{leftArticle.SizeName}^FS
+                ^FO300,50^A0,18^FD{leftArticle.SizeName}^FS
                 ^FO10,70^A0,18^FD{leftArticle.GroupName}^FS 
                 ^FO280,70^A0,18^FD{leftArticle.ColorName}^FS
                 ^FO85,90^BY2^BCN,50,,,,A^FD{leftArticle.Barcode}^FS
@@ -366,7 +366,7 @@ namespace ZebraPrinter.WPF
 
                 ^FO565,20^A0,25^FDTWELVE^FS
                 ^FO420,50^A0,20^FD{rightArticle.ProductName}^FS 
-                ^FO695,50^A0,18^FD{rightArticle.SizeName}^FS
+                ^FO710,50^A0,18^FD{rightArticle.SizeName}^FS
                 ^FO420,70^A0,18^FD{rightArticle.GroupName}^FS 
                 ^FO695,70^A0,18^FD{rightArticle.ColorName}^FS
                 ^FO495,90^BY2^BCN,50,,,,A^FD{rightArticle.Barcode}^FS
