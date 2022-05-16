@@ -332,22 +332,22 @@ namespace ZebraPrinter.WPF
         {
             string left = $@"^XA
                 ^FO155,20^A0,25^FDTWELVE^FS
-                ^FO10,50^A0,15^FD{article.ProductName}^FS 
-                ^FO300,50^A0,15^FD{article.SizeName}^FS
-                ^FO10,70^A0,15^FD{article.GroupName}^FS 
-                ^FO300,70^A0,15^FD{article.ColorName}^FS
+                ^FO10,50^A0,20^FD{article.ProductName}^FS 
+                ^FO295,50^A0,18^FD{article.SizeName}^FS
+                ^FO10,70^A0,18^FD{article.GroupName}^FS 
+                ^FO295,70^A0,18^FD{article.ColorName}^FS
                 ^FO85,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
-                ^FO50,175^A0,20^FDBDT: {getArticleRPU(article)}^FS
-                ^FO300,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS";
+                ^FO50,175^A0,25^FDBDT: {getArticleRPU(article)}^FS
+                ^FO285,175^A0,25^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS";
 
             string right = $@"^FO565,20^A0,25^FDTWELVE^FS
-                ^FO420,50^A0,15^FD{article.ProductName}^FS 
-                ^FO710,50^A0,15^FD{article.SizeName}^FS
-                ^FO420,70^A0,15^FD{article.GroupName}^FS 
-                ^FO710,70^A0,15^FD{article.ColorName}^FS
+                ^FO420,50^A0,20^FD{article.ProductName}^FS 
+                ^FO710,50^A0,18^FD{article.SizeName}^FS
+                ^FO420,70^A0,18^FD{article.GroupName}^FS 
+                ^FO710,70^A0,18^FD{article.ColorName}^FS
                 ^FO495,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
-                ^FO460,175^A0,20^FDBDT: {getArticleRPU(article)}^FS
-                ^FO710,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
+                ^FO460,175^A0,25^FDBDT: {getArticleRPU(article)}^FS
+                ^FO695,175^A0,25^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
                 ^XZ";
             return dual == true ? left + right : left + "^XZ";
         }
@@ -356,22 +356,22 @@ namespace ZebraPrinter.WPF
         {
             return $@"^XA
                 ^FO155,20^A0,25^FDTWELVE^FS
-                ^FO10,50^A0,15^FD{leftArticle.ProductName}^FS 
-                ^FO300,50^A0,15^FD{leftArticle.SizeName}^FS
-                ^FO10,70^A0,15^FD{leftArticle.GroupName}^FS 
-                ^FO300,70^A0,15^FD{leftArticle.ColorName}^FS
+                ^FO10,50^A0,20^FD{leftArticle.ProductName}^FS 
+                ^FO295,50^A0,18^FD{leftArticle.SizeName}^FS
+                ^FO10,70^A0,18^FD{leftArticle.GroupName}^FS 
+                ^FO295,70^A0,18^FD{leftArticle.ColorName}^FS
                 ^FO85,90^BY2^BCN,50,,,,A^FD{leftArticle.Barcode}^FS
-                ^FO50,175^A0,20^FDBDT:{getArticleRPU(leftArticle)}^FS
-                ^FO300,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
+                ^FO50,175^A0,25^FDBDT:{getArticleRPU(leftArticle)}^FS
+                ^FO285,175^A0,25^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
 
                 ^FO565,20^A0,25^FDTWELVE^FS
-                ^FO420,50^A0,15^FD{rightArticle.ProductName}^FS 
-                ^FO710,50^A0,15^FD{rightArticle.SizeName}^FS
-                ^FO420,70^A0,15^FD{rightArticle.GroupName}^FS 
-                ^FO710,70^A0,15^FD{rightArticle.ColorName}^FS
+                ^FO420,50^A0,20^FD{rightArticle.ProductName}^FS 
+                ^FO710,50^A0,18^FD{rightArticle.SizeName}^FS
+                ^FO420,70^A0,18^FD{rightArticle.GroupName}^FS 
+                ^FO710,70^A0,18^FD{rightArticle.ColorName}^FS
                 ^FO495,90^BY2^BCN,50,,,,A^FD{rightArticle.Barcode}^FS
-                ^FO460,175^A0,20^FDBDT:{getArticleRPU(rightArticle)}^FS
-                ^FO710,175^A0,20^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
+                ^FO460,175^A0,25^FDBDT:{getArticleRPU(rightArticle)}^FS
+                ^FO695,175^A0,25^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
                 ^XZ";
         }
 
