@@ -312,7 +312,7 @@ namespace ZebraPrinter.WPF
                     {                     
                         //Console.WriteLine(SELECTED_ARTICLES[i].ProductName + " x1");
                         SELECTED_ARTICLES[i].Qty -= 1;
-                        if (SELECTED_ARTICLES.ElementAtOrDefault(i + 1) != null)
+                        if (SELECTED_ARTICLES.ElementAtOrDefault(i + 1) != null && SELECTED_ARTICLES[i + 1].Qty > 0)
                         {
                             printZpl(GetFormattedZPLString(SELECTED_ARTICLES[i], SELECTED_ARTICLES[i+1]));
                             SELECTED_ARTICLES[i + 1].Qty -= 1;
@@ -335,19 +335,19 @@ namespace ZebraPrinter.WPF
                 ^FO10,50^A0,20^FD{article.ProductName}^FS 
                 ^FO300,50^A0,18^FD{article.SizeName}^FS
                 ^FO10,70^A0,18^FD{article.GroupName}^FS 
-                ^FO280,70^A0,18^FD{article.ColorName}^FS
+                ^FO255,70^A0,18^FD{article.ColorName}^FS
                 ^FO85,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
-                ^FO50,175^A0,25^FDBDT: {getArticleRPU(article)}^FS
-                ^FO285,175^A0,25^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS";
+                ^FO50,175^A0,25^FDBDT: {getArticleRPU(article).ToString("0.##")}^FS
+                ^FO{(IS_VAT_INCLUSIVE ? "243" : "285")},175^A0,{(IS_VAT_INCLUSIVE ? "18" : "25")}^FD{(IS_VAT_INCLUSIVE ? "Vat Inclusive" : "(+Vat)")}^FS";
 
             string right = $@"^FO565,20^A0,25^FDTWELVE^FS
                 ^FO420,50^A0,20^FD{article.ProductName}^FS 
                 ^FO710,50^A0,18^FD{article.SizeName}^FS
                 ^FO420,70^A0,18^FD{article.GroupName}^FS 
-                ^FO695,70^A0,18^FD{article.ColorName}^FS
+                ^FO670,70^A0,18^FD{article.ColorName}^FS
                 ^FO495,90^BY2^BCN,50,,,,A^FD{article.Barcode}^FS
-                ^FO460,175^A0,25^FDBDT: {getArticleRPU(article)}^FS
-                ^FO685,175^A0,25^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
+                ^FO460,175^A0,25^FDBDT: {getArticleRPU(article).ToString("0.##")}^FS
+                ^FO{(IS_VAT_INCLUSIVE ? "643" : "685")},175^A0,{(IS_VAT_INCLUSIVE ? "18" : "25")}^FD{(IS_VAT_INCLUSIVE ? "Vat Inclusive" : "(+Vat)")}^FS
                 ^XZ";
             return dual == true ? left + right : left + "^XZ";
         }
@@ -359,19 +359,19 @@ namespace ZebraPrinter.WPF
                 ^FO10,50^A0,20^FD{leftArticle.ProductName}^FS 
                 ^FO300,50^A0,18^FD{leftArticle.SizeName}^FS
                 ^FO10,70^A0,18^FD{leftArticle.GroupName}^FS 
-                ^FO280,70^A0,18^FD{leftArticle.ColorName}^FS
+                ^FO255,70^A0,18^FD{leftArticle.ColorName}^FS
                 ^FO85,90^BY2^BCN,50,,,,A^FD{leftArticle.Barcode}^FS
-                ^FO50,175^A0,25^FDBDT:{getArticleRPU(leftArticle)}^FS
-                ^FO285,175^A0,25^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
+                ^FO50,175^A0,25^FDBDT:{getArticleRPU(leftArticle).ToString("0.##")}^FS
+                ^FO{(IS_VAT_INCLUSIVE ? "243" : "285")},175^A0,{(IS_VAT_INCLUSIVE ? "18" : "25")}^FD{(IS_VAT_INCLUSIVE ? "Vat Inclusive" : "(+Vat)")}^FS
 
                 ^FO565,20^A0,25^FDTWELVE^FS
                 ^FO420,50^A0,20^FD{rightArticle.ProductName}^FS 
                 ^FO710,50^A0,18^FD{rightArticle.SizeName}^FS
                 ^FO420,70^A0,18^FD{rightArticle.GroupName}^FS 
-                ^FO695,70^A0,18^FD{rightArticle.ColorName}^FS
+                ^FO670,70^A0,18^FD{rightArticle.ColorName}^FS
                 ^FO495,90^BY2^BCN,50,,,,A^FD{rightArticle.Barcode}^FS
-                ^FO460,175^A0,25^FDBDT:{getArticleRPU(rightArticle)}^FS
-                ^FO690,175^A0,25^FD{(IS_VAT_INCLUSIVE ? "" : "(+Vat)")}^FS
+                ^FO460,175^A0,25^FDBDT:{getArticleRPU(rightArticle).ToString("0.##")}^FS
+                ^FO{(IS_VAT_INCLUSIVE ? "643" : "685")},175^A0,{(IS_VAT_INCLUSIVE ? "18" : "25")}^FD{(IS_VAT_INCLUSIVE ? "Vat Inclusive" : "(+Vat)")}^FS
                 ^XZ";
         }
 
@@ -393,9 +393,9 @@ namespace ZebraPrinter.WPF
         {
             if (IS_VAT_INCLUSIVE)
             {
-                return article.RPU + (article.RPU * article.VatPercent / 100);
+                return Decimal.Floor(article.RPU + (article.RPU * article.VatPercent / 100));
             }
-            return article.RPU;
+            return Decimal.Floor(article.RPU);
         }
 
         private void articleSearchBx_KeyUp(object sender, KeyEventArgs e)
